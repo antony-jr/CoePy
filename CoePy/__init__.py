@@ -60,7 +60,11 @@ def DeployCoePyData(BDir , SkipFile = []):
     LogINFO("downloading required resources from remote host... ")
     wget.download(ARCHIVE_URL , ARCHIVE_TEMP_DIR)
     print("\n" , end = '')
-    SkipFile.remove(ARCHIVE_TEMP_DIR)
+    try:
+        SkipFile.remove(ARCHIVE_TEMP_DIR)
+    except ValueError:
+        pass
+
     SkipFile.append(ARCHIVE_URL)
     return DeployCoePyData(BDir , SkipFile = SkipFile)
 
