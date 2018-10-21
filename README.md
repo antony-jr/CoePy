@@ -78,7 +78,11 @@ Now each matrix in the set {**C<sub>0</sub> C<sub>1</sub> C<sub>2</sub> ... C<su
 thus **T<sub>m</sub>** corresponds to the character in chronological order in the list of all possible characters **'0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'**.
 
 The **Percentage of Match** is calculated like so... ,
+<p align=center>
+ <img src="math/pom.png" width=auto height=auto />
+</p>
 
+**Therefore The most appropriate character for nth character in the resultant string is obtained  , This process is repeated upto n=6(Since the maximum character inscribed in the captcha is six). Thus the resultant string is obtained.**
 
 # License
 
