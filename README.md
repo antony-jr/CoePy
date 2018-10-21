@@ -62,7 +62,7 @@ Now from the **static properties** we know that **'R' must be a 70x20 Matrix** ,
  
 Let **'C<sub>n</sub>'** be a matrix that represents a single character from the captcha , Where **'n'** represents the **n**th
 character from the captcha , Thus the range of **'n'** must be **0 <= n < Number of Characters in the Captcha**.
-Now from the **static properties** we know that **'C<sub>n</sub>' of must be a 10x8 Matrix** , like so... 
+Now from the **static properties** we know that **'C<sub>n</sub>' must be a 10x8 Matrix** , like so... 
 <p align=center>
  <img src="math/cn.png" width=auto height=auto />
 </p>
