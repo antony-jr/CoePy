@@ -60,8 +60,9 @@ Now from the **static properties** we know that **'R' must be a 70x20 Matrix** ,
  <img src="math/r.png" width=auto height=auto />
  </p>
  
-Let **'C'** be a matrix that represents a single character from the captcha , subscript of **'C'** is **'n'** which represents the **n** th character from the captcha , Thus the range of **'n'** must be **0 <= n < Number of Characters in the Captcha**.
-Now from the **static properties** we know that **'C' of 'n' must be a 10x8 Matrix** , like so... 
+Let **'C<sub>n</sub>'** be a matrix that represents a single character from the captcha , Where **'n'** represents the **n**th
+character from the captcha , Thus the range of **'n'** must be **0 <= n < Number of Characters in the Captcha**.
+Now from the **static properties** we know that **'C<sub>n</sub>' of must be a 10x8 Matrix** , like so... 
 <p align=center>
  <img src="math/cn.png" width=auto height=auto />
 </p>
