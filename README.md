@@ -12,3 +12,24 @@ when it comes alive and stable I will test everything.
 
 **NOTE**: Only tested on linux , may or may not work in other platforms.
 
+# Installation
+
+I did not publish this in pypi(Python Package Index) since the code will be updated frequently , and cannot release it a gazillion times ,And also **this project can be discontinued anytime.** 
+
+Therefore you have to install it manually from source , Don't worry it will be easy. Before you do anything , Make sure you have **google chrome** or **chromium** installed in your computer. (Which will be used by this script to render the website since it
+depends so much on a real browser , I will be honest , the website is very cranky when scraped with requests)
+
+Now execute the following commands in your terminal ,
+```
+ $ git clone https://github.com/antony-jr/CoePy
+ $ cd CoePy
+ $ sudo pip3 install -r requirements.txt
+ $ ./coepy.py --help
+```
+
+**Note** : This script is only tested on **Python 3.7**.
+
+# License
+
+The MIT License.   
+Copyright (C) 2018 [Antony Jr.](https://github.com/antony-jr)
