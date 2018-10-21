@@ -85,7 +85,14 @@ The **Percentage of Match** is calculated like so... ,
 **Therefore The most appropriate character for nth character in the resultant string is obtained  , This process is repeated upto n=6(Since the maximum character inscribed in the captcha is six). Thus the resultant string is obtained.**
 
 
-To see this in action you can use the **coepy-cpt.py** script which is used to test the **captcha parser** , 
+To see this in action , You can use the **coepy-cpt.py** script which is used to test the **captcha parser** ,
+```
+ $ cd CoePy
+ $ pip3 install -r requirements.txt # Install the dependencies.
+ $ python coepy-cpt.py CaptchaSamples/CaptchaSample0.png # The first captcha 
+ $ python coepy-cpt.py CaptchaSamples/CaptchaSample1.png # The second captcha
+```
+
 
 
 # License
