@@ -53,6 +53,14 @@ By Observations ,
 * Any arbitary captcha has **6 characters inscribed in it**.
 * A Single character can be fitted inside a **10x8 Matrix**.
 
+Now lets do some math ,   
+Let **'R'** be a matrix of a arbitary captcha image which is in **binary**.(i.e White Pixel is 255 and Black Pixel is 0) ,   
+Now from the **static properties** we can say that **'R' must be a 70x20 Matrix** , like so...   
+<p align=center>
+ <img src="math/r.png" width=auto height=auto />
+ </p>
+ 
+ 
 
 
 # License
