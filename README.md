@@ -74,8 +74,10 @@ Now these matrices are stored for later use.
 
 Now each matrix in the set {**C<sub>0</sub> C<sub>1</sub> C<sub>2</sub> ... C<sub>5</sub>**} is compared againts each element in the **test set**. The **Percentage of Match** is calculated between a single character(**C<sub>n</sub>**) in the arbitary captcha and all the characters in the **test set** , The element in **test set** with the highest **Percentage of Match** is the most appropriate character in the position **n** of the **resultant string** which must have a length of **6**(Since the captcha has only 6 characters inscribed in it).
 
-The **Percentage of Match** is calculated like so... ,
+**T<sub>0</sub>** corresponds to the character **'0'** , **T<sub>0</sub>** corresponds to the character **'1'** , and 
+thus **T<sub>m</sub>** corresponds to the character in chronological order in the list of all possible characters **'0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'**.
 
+The **Percentage of Match** is calculated like so... ,
 
 
 # License
