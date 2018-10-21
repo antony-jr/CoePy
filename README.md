@@ -97,6 +97,10 @@ To see this in action , You can use the **coepy-cpt.py** script which is used to
 <img src="captcha_cracking_preview.gif" width=auto height=auto />
 </p>
 
+
+
+Still this can get us wrong results sometimes , but we can just re-try , We just need the most likely answers.
+
 # License
 
 The MIT License.   
