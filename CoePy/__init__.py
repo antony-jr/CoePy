@@ -5,6 +5,7 @@ import hashlib
 import zipfile
 import tempfile
 import os
+from selenium.common.exceptions import WebDriverException
 from .CoePyLogger import LogINFO , LogWARNING , LogFATAL
 from .CoePyArgumentParser import CoePyArgumentParser
 from .CoePyLogin import CoePyLogin
@@ -106,7 +107,9 @@ def ExecuteCoePy():
     LogINFO("loading login page... ")
     try:
         LoginHandle = CoePyLogin(NoHeadless)
-    except (KeyboardInterrupt , TypeError) as e:
+    except (KeyboardInterrupt , TypeError, WebDriverException) as e:
+            if type(e).__name__ == 'WebDriverException':
+                LogWARNING("it seems that you closed the automatically controlled browser.")
             LogFATAL("loading failed because of " , type(e).__name__ , ".")
             sys.exit(-1)
 
