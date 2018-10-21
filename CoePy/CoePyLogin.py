@@ -9,7 +9,7 @@ from selenium.webdriver.common.by import By
 from selenium.common.exceptions import TimeoutException
 
 TIME_TO_WAIT_FOR_RENDER = 10
-CAPTCHA_LETTER_DATA_DIR = str(os.path.expanduser('~')) + "/.CoePy/CoePyLetterData"
+CAPTCHA_LETTER_DATA_DIR = str(os.path.expanduser('~')) + "/.CoePy/CaptchaLetterData"
 CHROME_DRIVER = str(os.path.expanduser('~')) + "/.CoePy/chromedriver"
 
 class CoePyLogin(object):
@@ -43,7 +43,7 @@ class CoePyLogin(object):
             if "base64" in j:
                 captchaBase64Encoded = ((j.split("base64,"))[1]).split('"')[0]
                 break
-        CParser = CoePyCaptchaParser(captchaBase64Encoded , LETTER_DATA_DIR)
+        CParser = CoePyCaptchaParser(captchaBase64Encoded , CAPTCHA_LETTER_DATA_DIR)
         self.__enterValueToElement__('login_stu' , 'security_code_student' , CParser.digest())
         if not self.__clickButton__('login_stu' , 'gos'):
             return False
