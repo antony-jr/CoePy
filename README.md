@@ -1,4 +1,4 @@
-# CoePy
+# CoePy [![GitHub issues](https://img.shields.io/github/issues/antony-jr/CoePy.svg?style=flat-square)](https://github.com/antony-jr/CoePy/issues) [![GitHub forks](https://img.shields.io/github/forks/antony-jr/CoePy.svg?style=flat-square)](https://github.com/antony-jr/CoePy/network) [![GitHub stars](https://img.shields.io/github/stars/antony-jr/CoePy.svg?style=flat-square)](https://github.com/antony-jr/CoePy/stargazers) [![GitHub license](https://img.shields.io/github/license/antony-jr/CoePy.svg?style=flat-square)](https://github.com/antony-jr/CoePy/blob/master/LICENSE)
 
 This is a simple and powerful CLI tool written in python which can automate student information extraction from AU , and
 eventually makes our lives better.
