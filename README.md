@@ -55,13 +55,16 @@ By Observations ,
 
 Now lets do some math ,   
 Let **'R'** be a matrix of a arbitary captcha image which is in **binary**.(i.e White Pixel is 255 and Black Pixel is 0) ,   
-Now from the **static properties** we can say that **'R' must be a 70x20 Matrix** , like so...   
+Now from the **static properties** we know that **'R' must be a 70x20 Matrix** , like so...   
 <p align=center>
  <img src="math/r.png" width=auto height=auto />
  </p>
  
- 
-
+Let **'C'** be a matrix that represents a single character from the captcha , subscript of **'C'** is **'n'** which represents the **n** th character from the captcha , Thus the range of **'n'** must be **0 < n < Number of Characters in the Captcha**.
+Now from the **static properties** we know that **'C' of 'n' must be a 10x8 Matrix** , like so... 
+<p align=center>
+ <img src="math/cn.png" width=auto height=auto />
+</p>
 
 # License
 
