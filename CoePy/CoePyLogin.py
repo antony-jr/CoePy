@@ -29,6 +29,10 @@ class CoePyLogin(object):
     def getDriver(self):
         return self._mDriver
 
+    def reset(self):
+        self._mDriver.get(URLS['mirror1'])
+        return True
+
     def setRegisterNumber(self , regno):
         return self.__enterValueToElement__('login_stu' , 'register_no' , regno)
     
@@ -50,7 +54,12 @@ class CoePyLogin(object):
         return True
 
     def isLogged(self):
-        return False
+        # TODO: Check for something else , This is just for the 
+        # time beign.
+        el = self._mDriver.find_element_by_id("tab3")
+        if el is None:
+            return False
+        return True
 
     def __clickButton__(self , formName , elementName):
         try:
