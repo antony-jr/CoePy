@@ -1,0 +1,6 @@
+asciiplotlib==0.1.4
+numpy==1.15.2
+Pillow==5.3.0
+wget==3.2
+selenium==3.14.1
+requests==2.19.1
