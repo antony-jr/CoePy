@@ -93,7 +93,9 @@ To see this in action , You can use the **coepy-cpt.py** script which is used to
  $ python coepy-cpt.py CaptchaSamples/CaptchaSample1.png # The second captcha
 ```
 
-
+<p align=center>
+<img src="captcha_cracking_preview.gif" width=auto height=auto />
+</p>
 
 # License
 
