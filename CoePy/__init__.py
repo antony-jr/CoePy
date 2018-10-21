@@ -1,5 +1,6 @@
 import sys
 import time
+import wget
 import hashlib
 import zipfile
 import tempfile
@@ -8,7 +9,7 @@ from .CoePyArgumentParser import CoePyArgumentParser
 from .CoePyLogin import CoePyLogin
 from .CoePyAssessmentMarkParser import CoePyAssessmentMarkParser
 
-VERSION = 0.1
+VERSION = "0.0.1"
 CAPTCHA_LETTER_DATA_MD5_SUM = "41e088efc3ec615cf1c45fe4db40f14d"
 COEPY_DATA_ZIP_MD5_SUM = "5869794dc97a753c901c6793a1035d58"
 
@@ -26,7 +27,7 @@ def ExtractArchive(Archive , Dir):
     return True
 
 def DeployCoePyData(BDir , SkipFile = ""):
-    ARCHIVE_URL = ""
+    ARCHIVE_URL = "https://github.com/antony-jr/CoePy/releases/download/v"+VERSION+"/CoePyData.zip"
     ARCHIVE_CURRENT_DIR = os.path.abspath("CoePyData.zip")
     ARCHIVE_TEMP_DIR = os.path.abspath(tempfile.gettempdir() + "/CoePyData.zip")
     if os.path.exists(ARCHIVE_CURRENT_DIR) and SkipFile != ARCHIVE_CURRENT_DIR:
@@ -43,8 +44,15 @@ def DeployCoePyData(BDir , SkipFile = ""):
         if not MD5_CTX.digest().hex() == COEPY_DATA_ZIP_MD5_SUM:
             return DeployCoePyData(BDir, SkipFile = ARCHIVE_TEMP_DIR) 
         return ExtractArchive(ARCHIVE_TEMP_DIR, BDir)
-    # Download to temporary directory.
-    return DeployCoePyData(BDir)
+
+    # Make sure not to go into infinite recursions on failure.
+    if(SkipFile == ARCHIVE_URL):
+        return False
+    
+    # Download the archive to temp dir.
+    print("INFO: downloading required resources.")
+    wget.download(ARCHIVE_URL , ARCHIVE_TEMP_DIR)
+    return DeployCoePyData(BDir , SkipFile == ARCHIVE_URL)
 
 def CheckRequiredBinaries():
     BINARY_DIR = str(os.path.expanduser('~')) + "/.CoePy"
