@@ -1,12 +1,15 @@
 import os
 import stat
+import asciiplotlib as apl
 from .CoePyCaptchaParser import CoePyCaptchaParser
+from .CoePyLogger import LogINFO
 from .CoePyConstants import URLS , PATHS , WEBDRIVER_SETTINGS
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import TimeoutException
+from bs4 import BeautifulSoup
 
 class CoePyLogin(object):
     _mDriver = None
@@ -52,9 +55,24 @@ class CoePyLogin(object):
     def isLogged(self):
         # TODO: Check for something else , This is just for the 
         # time beign.
-        el = self._mDriver.find_element_by_id("tab3")
-        if el is None:
+        try:
+            WebDriverWait(self._mDriver, WEBDRIVER_SETTINGS['TimeToWait']).until(EC.presence_of_element_located((By.ID, "page")))
+            el = self._mDriver.find_element_by_id("page")
+        except:
             return False
+        soup = BeautifulSoup(self._mDriver.find_element_by_id("resulttable").get_attribute("outerHTML") , 'html.parser')
+        data = [
+                [
+                    [td.string.strip() for td in tr.find_all('td') if td.string]
+                    for tr in table.find_all('tr')[1:]
+                ]
+                for table in soup.find_all('table')
+        ]
+
+        LogINFO("showing student information... ")
+        fig = apl.figure()
+        fig.table(data)
+        fig.show()
         return True
 
     def __clickButton__(self , formName , elementName):
