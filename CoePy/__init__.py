@@ -1,5 +1,5 @@
 import sys
-from selenium.common.exceptions import WebDriverException
+from selenium.common.exceptions import WebDriverException , NoSuchWindowException
 from .CoePyResourceDeployer import CoePyResourceDeployer
 from .CoePyArgumentParser import CoePyArgumentParser
 from .CoePyLogin import CoePyLogin
@@ -34,7 +34,7 @@ def ExecuteCoePy():
     LogINFO("loading login page... ")
     try:
         LoginHandle = CoePyLogin(NoHeadless)
-    except (KeyboardInterrupt , TypeError, WebDriverException) as e:
+    except (KeyboardInterrupt , TypeError, WebDriverException , NoSuchWindowException) as e:
             if type(e).__name__ == 'WebDriverException':
                 LogWARNING("it seems that you closed the automatically controlled browser.")
             LogFATAL("loading failed because of " , type(e).__name__ , ".")
@@ -48,7 +48,7 @@ def ExecuteCoePy():
 
     Parser = None
     if ArgumentParser.getValue('assessment_mark'):
-        LogInfo("parsing information for assessment mark... ")
+        LogINFO("parsing information for assessment mark... ")
         Parser = CoePyAssessmentMarkParser(LoginHandle)
     else:
         LogFATAL("no mode is selected , atleast pass --assessment-mark option.")

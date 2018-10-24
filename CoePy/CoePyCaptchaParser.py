@@ -21,14 +21,17 @@ class CoePyCaptchaParser(object):
     _bDebug = False 
     _bLogProgress = False
 
-    def __init__(self , base64EncodedImage , TrainedDataDir , debug = False , logProgress = False):
+    def __init__(self , img , TrainedDataDir , debug = False , logProgress = False , base64Encoded = True):
         # Set Debug and Logging
         self._bDebug = debug
         self._bLogProgress = logProgress
 
         # Load Given Image
         try:
-            im = Image.open(BytesIO(base64.b64decode(base64EncodedImage))).convert('L')
+            if base64Encoded:
+                im = Image.open(BytesIO(base64.b64decode(img))).convert('L')
+            else:
+                im = Image.open(img).convert('L')
         except:
             if self._bLogProgress:
                 LogFATAL("given base64 encoded image cannot be processed!")
@@ -53,42 +56,6 @@ class CoePyCaptchaParser(object):
                 LogFATAL("data dir given cannot be accessed!")
             raise RuntimeError
 
-        for i in contents:
-            self._mAvailableLettersData[i.replace('Letter' ,'').replace('.dat' , '')] = TrainedDataDir + "/" + i
-
-    def __init__(self , imagePath , TrainedDataDir , debug = False , logProgress = False):
-        # Set Debug and Logging 
-        self._bDebug = debug
-        self._bLogProgress = logProgress 
-
-        # Load Local Image
-        try:
-            im = Image.open(imagePath).convert('L')
-        except:
-            if self._bLogProgress:
-                LogFATAL("cannot retrive image file from the path '" , imagePath , "'!")
-            raise RuntimeError
-
-        (width, height) = im.size
-        greyscale_map = list(im.getdata())
-        greyscale_map = np.array(greyscale_map)
-        if height != 20 or width != 70:
-            if self._bLogProgress:
-                 LogFATAL("given image does is not 70 width x 20 height image!")
-            raise RuntimeError
-
-        greyscale_map = greyscale_map.reshape((height, width))
-        self._mCaptchaRaw = greyscale_map
-        
-        
-        # Get the training data.
-        contents = None
-        try:
-            contents = os.listdir(TrainedDataDir)
-        except:
-            if self._bLogProgress:
-                LogFATAL("data dir given cannot be accessed!")
-            raise RuntimeError
         for i in contents:
             self._mAvailableLettersData[i.replace('Letter' ,'').replace('.dat' , '')] = TrainedDataDir + "/" + i
     

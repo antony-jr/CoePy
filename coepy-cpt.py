@@ -12,5 +12,5 @@ if __name__ == "__main__":
         sys.exit(0)
     elif not RD().deploy():
         sys.exit(-1)
-    L("Digest: " , CP(sys.argv[1] , P["CaptchaLetterData"] , debug = False , logProgress = True).digest())
+    L("Digest: " , CP(sys.argv[1] , P["CaptchaLetterData"] , debug = False , logProgress = True , base64Encoded = False).digest())
     sys.exit(0)
