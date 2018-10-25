@@ -12,6 +12,11 @@ ParserInformation = {
                 'short' : '-dob',
                 'type' : str,
                 'help' : 'Date of birth of the student you want to check marks.'
+            },
+            '--json-info-file':{
+                'short' : '-jif',
+                'type' : str,
+                'help' : 'Parses the given file in json and returns information as requested for a single user.'
             }
         },
         'actionArguments': {

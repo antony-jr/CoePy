@@ -1,5 +1,6 @@
 import sys
 import time
+import json
 from selenium.common.exceptions import WebDriverException , NoSuchWindowException
 from .CoePyResourceDeployer import CoePyResourceDeployer
 from .CoePyArgumentParser import CoePyArgumentParser
@@ -17,14 +18,35 @@ def ExecuteCoePy():
     ArgumentParser = CoePyArgumentParser()
     Deployer = CoePyResourceDeployer()
 
-    if (ArgumentParser.isEmpty() or
+    if ((ArgumentParser.isEmpty() or
             ArgumentParser.getValue('register_number') is None or 
-                ArgumentParser.getValue('date_of_birth') is None):
+                ArgumentParser.getValue('date_of_birth') is None) and 
+                    (ArgumentParser.getValue('json_info_file') is None)):
         ArgumentParser.printHelp()
         sys.exit(0)
 
-    RegisterNumber = ArgumentParser.getValue('register_number')
-    DateOfBirth = ArgumentParser.getValue('date_of_birth')
+
+    RegisterNumber = None
+    DateOfBirth = None 
+    if ArgumentParser.getValue('json_info_file') is not None:
+        info = None
+        try:
+            with open(ArgumentParser.getValue('json_info_file') , 'r') as fp:
+                info = json.load(fp)
+        except:
+            LogFATAL("error parsing json info file at '" , ArgumentParser.getValue('json_info_file') , "'.")
+            sys.exit(-1)
+
+        try:
+            RegisterNumber = info['regno']
+            DateOfBirth = info['dob']
+        except:
+            LogFATAL("invalid information given in json file.")
+            sys.exit(-1)
+    else:
+        RegisterNumber = ArgumentParser.getValue('register_number')
+        DateOfBirth = ArgumentParser.getValue('date_of_birth')
+
     NoHeadless = ArgumentParser.getValue('no_headless')
     DoVerbose = ArgumentParser.getValue('verbose')
     DoQuickBrowse = ArgumentParser.getValue('quick_browse')
