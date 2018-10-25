@@ -69,6 +69,7 @@ def ExecuteCoePy():
     LoginHandle.setDateOfBirth(DateOfBirth)
     LoginHandle.login()
     if not LoginHandle.isLogged():
+        LogFATAL("cannot login , please try again... ")
         sys.exit(-2)
 
     if ArgumentParser.getValue('assessment_mark'):
