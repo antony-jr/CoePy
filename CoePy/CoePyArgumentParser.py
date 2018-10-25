@@ -26,6 +26,10 @@ ParserInformation = {
             '--verbose' : {
                 'short' : '-v',
                 'help' : 'Activate Verbose mode.'
+            },
+            '--quick-browse' : {
+                'short' : '-qb',
+                'help' : 'Simply Logs you in the COE WEBSITE in a blink , substains the state in a browser!'
             }
         }
 }

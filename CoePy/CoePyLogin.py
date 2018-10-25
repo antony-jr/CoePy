@@ -60,19 +60,24 @@ class CoePyLogin(object):
             el = self._mDriver.find_element_by_id("page")
         except:
             return False
-        soup = BeautifulSoup(self._mDriver.find_element_by_id("resulttable").get_attribute("outerHTML") , 'html.parser')
-        data = [
-                [
-                    [td.string.strip() for td in tr.find_all('td') if td.string]
-                    for tr in table.find_all('tr')[1:]
-                ]
-                for table in soup.find_all('table')
-        ]
 
-        LogINFO("showing student information... ")
-        fig = apl.figure()
-        fig.table(data)
-        fig.show()
+        try:
+            soup = BeautifulSoup(self._mDriver.find_element_by_id("resulttable").get_attribute("outerHTML") , 'html.parser')
+            data = [
+                    [
+                        [td.string.strip() for td in tr.find_all('td') if td.string]
+                        for tr in table.find_all('tr')[1:]
+                    ]
+                    for table in soup.find_all('table')
+            ]
+            
+            LogINFO("showing student information... ")
+            fig = apl.figure()
+            fig.table(data)
+            fig.show()
+        except:
+            return False
+
         return True
 
     def __clickButton__(self , formName , elementName):

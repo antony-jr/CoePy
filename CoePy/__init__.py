@@ -1,4 +1,5 @@
 import sys
+import time
 from selenium.common.exceptions import WebDriverException , NoSuchWindowException
 from .CoePyResourceDeployer import CoePyResourceDeployer
 from .CoePyArgumentParser import CoePyArgumentParser
@@ -26,7 +27,9 @@ def ExecuteCoePy():
     DateOfBirth = ArgumentParser.getValue('date_of_birth')
     NoHeadless = ArgumentParser.getValue('no_headless')
     DoVerbose = ArgumentParser.getValue('verbose')
-    
+    DoQuickBrowse = ArgumentParser.getValue('quick_browse')
+    NoHeadless = DoQuickBrowse # If Quick Browse then chromium cannot be in headless mode.
+
     if not Deployer.deploy():
         LogFATAL("cannot deploy resources!")
         sys.exit(-1)
@@ -46,11 +49,20 @@ def ExecuteCoePy():
     if not LoginHandle.isLogged():
         sys.exit(-2)
 
-    Parser = None
     if ArgumentParser.getValue('assessment_mark'):
         LogINFO("parsing information for assessment mark... ")
         Parser = CoePyAssessmentMarkParser(LoginHandle)
+    elif DoQuickBrowse:
+        LogINFO("you can now start using the automated browser , Simply close the window to end the script.")
+        while True:
+            try:
+                LoginHandle.getDriver().title
+            except:
+                LogINFO("browser closed , exiting... ")
+                break
+            time.sleep(4)
     else:
         LogFATAL("no mode is selected , atleast pass --assessment-mark option.")
         sys.exit(-3)
+    LogINFO("graceful termination.")
     sys.exit(0)
